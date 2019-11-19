@@ -1,3 +1,7 @@
-export default function(context) {
-  console.log(context)
+import { getToken } from '~/utils/auth'
+
+export default function({ redirect }) {
+  if (!getToken()) {
+    return redirect('/')
+  }
 }

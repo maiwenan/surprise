@@ -17,6 +17,7 @@
 
 <script>
 import Input from '~/components/Input.vue'
+import { setToken } from '~/utils/auth'
 
 export default {
   components: {
@@ -32,8 +33,12 @@ export default {
       this.$refs[next].focus()
     },
     onSubmit() {
-      console.log(this.vals.join(''), this.$router)
-      this.$router.push('/surprise')
+      const token = this.vals.join('')
+
+      if (token === '111000') {
+        setToken(token)
+        this.$router.push('/surprise')
+      }
     }
   }
 }
