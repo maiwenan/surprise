@@ -4,7 +4,7 @@
     v-model.trim="val"
     @input="onInput"
     class="input"
-    type="text"
+    type="password"
   />
 </template>
 
@@ -48,6 +48,7 @@ export default {
 .input {
   width: 42px;
   height: 50px;
+  padding: 6px;
   font-size: 28px;
   line-height: 50px;
   text-align: center;

@@ -78,6 +78,8 @@ export default {
 
     this.renderFrame()
     this.run()
+
+    window.addEventListener('touchstart', this.play)
   },
   methods: {
     loadImage(url) {
@@ -114,22 +116,16 @@ export default {
         childNpc
       } = npcSet
       const run = () => {
-        if (footNpc6.progress < 1) {
-          if (addrNpc.progress >= 1) {
-            addrNpc.direction = 1
-          }
-          if (addrNpc.progress < 0.5) {
-            addrNpc.direction = 0
-          }
-          if (addrNpc.direction === 0) {
-            addrNpc.in()
-          } else {
-            addrNpc.out()
-          }
+        if (addrNpc.progress >= 1) {
+          addrNpc.direction = 1
+        }
+        if (addrNpc.progress < 0.5) {
+          addrNpc.direction = 0
+        }
+        if (addrNpc.direction === 0) {
+          addrNpc.in()
         } else {
-          if (addrNpc.progress < 1) {
-            addrNpc.in()
-          }
+          addrNpc.out()
         }
 
         if (titleNpc.progress < 1) {
@@ -177,14 +173,18 @@ export default {
         window.requestAnimationFrame(run)
       })
     },
+    play() {
+      this.$refs.audio.play()
+      this.playing = true
+    },
     toggle() {
       if (this.playing) {
         this.$refs.audio.pause()
         this.playing = false
       } else {
-        this.$refs.audio.play()
-        this.playing = true
+        this.play()
       }
+      window.removeEventListener('touchstart', this.play)
     }
   }
 }
@@ -202,6 +202,7 @@ export default {
 
 .container {
   position: relative;
+  display: flex;
 }
 
 .music-icon {
