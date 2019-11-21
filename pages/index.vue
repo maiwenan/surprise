@@ -18,6 +18,7 @@
 <script>
 import Input from '~/components/Input.vue'
 import { setToken } from '~/utils/auth'
+import cfgData from '~/config.json'
 
 export default {
   components: {
@@ -38,7 +39,7 @@ export default {
     onSubmit() {
       const token = this.vals.join('')
 
-      if (token === '111000') {
+      if (token === cfgData.password) {
         setToken(token)
         this.$router.push('/surprise')
       }
