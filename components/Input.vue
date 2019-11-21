@@ -5,7 +5,7 @@
     @input="onInput"
     @keydown="onKeydown"
     class="input"
-    type="password"
+    type="number"
   />
 </template>
 
@@ -59,8 +59,8 @@ export default {
   width: 42px;
   height: 50px;
   padding: 6px;
-  font-size: 28px;
-  line-height: 50px;
+  font-size: 24px;
+  line-height: 24px;
   text-align: center;
   border: 0;
   border-bottom: 1px solid #ddd;

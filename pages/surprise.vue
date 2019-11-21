@@ -1,9 +1,10 @@
 <template>
   <div class="container">
-    <audio ref="audio" src="http://static.tednews.cn/happybirthday.mp3" loop autoplay></audio>
+    <audio ref="audio" :src="cfgData.music" loop autoplay></audio>
     <a ref="toggle" :class="['music-icon', playing ? 'active' : '']" @click="toggle">
       <img src="http://res.maka.im/cdn/maka/release/music_icon.png?32fb85122f139626cd4982d113498ac8" />
     </a>
+    <a :href="cfgData.birthday" class="birthday" :style="birthdayStyle" />
     <canvas ref="canvas" class="canvas" />
   </div>
 </template>
@@ -26,12 +27,27 @@ import Npc from '~/utils/Npc'
 import ScaleNpc from '~/utils/ScaleNpc'
 import FadeNpc from '~/utils/FadeNpc'
 import AddrNpc from '~/utils/AddrNpc'
+import cfgData from '~/config.json'
 
 export default {
   middleware: 'auth',
   data() {
     return {
+      cfgData,
+      ratio: 0,
       playing: false
+    }
+  },
+  computed: {
+    birthdayStyle() {
+      const { ratio } = this
+
+      return {
+        top: `${2598 * ratio}px`,
+        left: `${1014 * ratio}px`,
+        width: `${158 * ratio}px`,
+        height: `${192 * ratio}px`
+      }
     }
   },
   async mounted() {
@@ -230,6 +246,12 @@ export default {
     width: 100%;
     height: 100%;
   }
+}
+
+.birthday {
+  position: absolute;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .canvas {
