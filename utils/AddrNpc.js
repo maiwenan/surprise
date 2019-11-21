@@ -3,9 +3,6 @@ import ScaleNpc from '~/utils/ScaleNpc'
 export default class AddrNpc extends ScaleNpc {
   constructor(ctx, el, x, y, ratio) {
     super(ctx, el, x, y, ratio)
-    this.speed = 0.01
-    this.progress = 0.5
-    this.direction = 0
   }
 
   render() {

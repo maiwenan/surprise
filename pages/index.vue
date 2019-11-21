@@ -4,11 +4,11 @@
     <p class="sub-title">私密空间，需要验证才可以访问</p>
     <div class="input-box">
       <c-input ref="a" v-model="vals[0]" @next="onNext" next="b" />
-      <c-input ref="b" v-model="vals[1]" @next="onNext" next="c" />
-      <c-input ref="c" v-model="vals[2]" @next="onNext" next="d" />
-      <c-input ref="d" v-model="vals[3]" @next="onNext" next="e" />
-      <c-input ref="e" v-model="vals[4]" @next="onNext" next="f" />
-      <c-input ref="f" v-model="vals[5]" />
+      <c-input ref="b" v-model="vals[1]" @prev="onPrev" @next="onNext" prev="a" next="c" />
+      <c-input ref="c" v-model="vals[2]" @prev="onPrev" @next="onNext" prev="b" next="d" />
+      <c-input ref="d" v-model="vals[3]" @prev="onPrev" @next="onNext" prev="c" next="e" />
+      <c-input ref="e" v-model="vals[4]" @prev="onPrev" @next="onNext" prev="d" next="f" />
+      <c-input ref="f" v-model="vals[5]" @prev="onPrev" prev="e" />
     </div>
 
     <a @click="onSubmit" class="btn">确定</a>
@@ -29,6 +29,9 @@ export default {
     }
   },
   methods: {
+    onPrev(prev) {
+      this.$refs[prev].focus()
+    },
     onNext(next) {
       this.$refs[next].focus()
     },

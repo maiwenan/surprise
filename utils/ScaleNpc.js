@@ -5,7 +5,8 @@ export default class ScaleNpc extends Npc {
     super(ctx, el, x, y, ratio)
     this.rx = this.x + this.width / 2
     this.ry = this.y + this.height / 2
-    this.speed = 0.02
+    this.speed = 0.01
+    this.direction = 0
   }
 
   render() {

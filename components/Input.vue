@@ -3,6 +3,7 @@
     ref="input"
     v-model.trim="val"
     @input="onInput"
+    @keydown="onKeydown"
     class="input"
     type="password"
   />
@@ -14,6 +15,10 @@ export default {
     value: {
       type: String,
       default: ''
+    },
+    prev: {
+      type: String,
+      default: undefined
     },
     next: {
       type: String,
@@ -35,6 +40,11 @@ export default {
       this.$emit('input', this.val)
       if (this.val.length === 1 && /\S/.test(this.val.length)) {
         this.$emit('next', this.next)
+      }
+    },
+    onKeydown(e) {
+      if (e.keyCode === 8 && this.val === '') {
+        this.$emit('prev', this.prev)
       }
     },
     focus() {

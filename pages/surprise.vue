@@ -128,9 +128,19 @@ export default {
           addrNpc.out()
         }
 
-        if (titleNpc.progress < 1) {
+        if (titleNpc.progress >= 1) {
+          titleNpc.direction = 1
+        }
+        if (titleNpc.progress < 0.5) {
+          titleNpc.direction = 0
+        }
+        if (titleNpc.direction === 0) {
           titleNpc.in()
-        } else if (txNpc.progress < 1) {
+        } else {
+          titleNpc.out()
+        }
+
+        if (txNpc.progress < 1) {
           txNpc.in()
         } else if (footNpc1.progress < 1) {
           footNpc1.in()
